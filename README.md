@@ -19,29 +19,29 @@ theme configure api_key password store_url
 Download all the theme files
 
 ````
-theme download
+theme download --env=staging
 ````
 
 Upload a theme file
 
 ````
-theme upload assets/layout.liquid
+theme upload assets/layout.liquid --env=staging
 ````
 
 Remove a theme file
 
 ````
-theme remove assets/layout.liquid
+theme remove assets/layout.liquid --env=staging
 ````
 
 Completely replace shop theme assets with the local assets
 
 ````
-theme replace
+theme replace --env=staging
 ````
 
 Watch the theme directory and upload any files as they change
 
 ````
-theme watch
+theme watch --env=staging
 ````
