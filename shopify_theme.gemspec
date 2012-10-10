@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "shopify_theme"
   s.version     = ShopifyTheme::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["John Duff", "Chris Hale"]
-  s.email       = ["john.duff@shopify.com", "design@chrishale.co.uk"]
+  s.authors     = ["Chris Hale"]
+  s.email       = ["design@chrishale.co.uk"]
   s.homepage    = "https://github.com/chrishale/shopify_theme"
   s.summary     = %q{Command line tool for deploying Shopify themes to multiple enviroments}
   s.description = %q{Command line tool to help with developing Shopify themes. Provides simple commands to download, upload and delete files from a theme. Also includes the watch command to watch a directory and upload files as they change.}
