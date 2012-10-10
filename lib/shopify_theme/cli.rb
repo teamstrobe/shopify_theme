@@ -41,7 +41,7 @@ module ShopifyTheme
     method_option :quiet, :type => :boolean, :default => false
     method_option :env, :type => :string, :default => 'development'
     def upload(*keys)
-      assets = keys.empty? ? local_assets_list : keys
+      assets = keys.empty? ? local_assets_list(options['env']) : keys
       assets.each do |asset|
         send_asset(asset, options['quiet'], options['env'])
       end
@@ -54,11 +54,11 @@ module ShopifyTheme
     def replace(*keys)
       say("Are you sure you want to completely replace your shop theme assets? This is not undoable.", :yellow)
       if ask("Continue? (Y/N): ") == "Y"
-        remote_assets = keys.empty? ? ShopifyTheme.asset_list(env) : keys
+        remote_assets = keys.empty? ? ShopifyTheme.asset_list(options['env']) : keys
         remote_assets.each do |asset|
           delete_asset(asset, options['quiet'], options['env'])
         end
-        local_assets = keys.empty? ? local_assets_list : keys
+        local_assets = keys.empty? ? local_assets_list(options['env']) : keys
         local_assets.each do |asset|
           send_asset(asset, options['quiet'], options['env'])
         end
@@ -84,14 +84,14 @@ module ShopifyTheme
       puts "Watching current folder:"
       Listen.to('',:relative_paths => true) do |modified, added, removed|
         modified.each do |filePath|
-          send_asset(filePath, options['quiet'], options['env']) if local_assets_list.include?(filePath)
+          send_asset(filePath, options['quiet'], options['env']) if local_assets_list(options['env']).include?(filePath)
         end
         added.each do |filePath|
-          send_asset(filePath, options['quiet'], options['env']) if local_assets_list.include?(filePath)
+          send_asset(filePath, options['quiet'], options['env']) if local_assets_list(options['env']).include?(filePath)
         end
         if !options['keep_files']
           removed.each do |filePath|
-            delete_asset(filePath, options['quiet'], options['env']) if local_assets_list.include?(relative)
+            delete_asset(filePath, options['quiet'], options['env']) if local_assets_list(options['env']).include?(relative)
           end
         end
       end
@@ -99,9 +99,9 @@ module ShopifyTheme
 
     private
 
-    def local_assets_list
+    def local_assets_list(env)
       Dir.glob(File.join("**", "*")).reject do |p|
-        File.directory?(p) || IGNORE.include?(p) || ShopifyTheme.ignore_files.any? do |i|
+        File.directory?(p) || IGNORE.include?(p) || ShopifyTheme.ignore_files(env).any? do |i|
           i =~ p
         end
       end
@@ -145,7 +145,7 @@ module ShopifyTheme
     end
 
     def errors_from_response(response)
-      response.parsed_response ? response.parsed_response["errors"].values.join(", ") : ""
+      response.parsed_response["errors"] ? response.parsed_response["errors"].values.join(", ") : ""
     end
   end
 end

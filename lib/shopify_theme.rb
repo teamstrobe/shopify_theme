@@ -24,7 +24,7 @@ module ShopifyTheme
   end
 
   def self.delete_asset(asset, env)
-    shopify.delete(path, :body =>{:asset => {:key => asset}})
+    shopify(env).delete(path(env), :body =>{:asset => {:key => asset}})
   end
 
   def self.config
