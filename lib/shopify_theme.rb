@@ -19,8 +19,8 @@ module ShopifyTheme
     JSON.parse(response.body)["asset"]
   end
 
-  def self.send_asset(data)
-    shopify.put(path, :body =>{:asset => data})
+  def self.send_asset(data, env)
+    shopify(env).put(path(env), :body =>{:asset => data})
   end
 
   def self.delete_asset(asset)
@@ -31,8 +31,8 @@ module ShopifyTheme
     @config ||= YAML.load(File.read('config.yml'))
   end
 
-  def self.path
-    @path ||= config[:theme_id] ? "/admin/themes/#{config[:theme_id]}/assets.json" : "/admin/assets.json" 
+  def self.path(env)
+    @path ||= config[:theme_id] ? "/admin/themes/#{config[:"#{env}"][:theme_id]}/assets.json" : "/admin/assets.json" 
   end
 
   def self.ignore_files
@@ -48,9 +48,9 @@ module ShopifyTheme
   end
 
   private
-  def self.shopify
-    basic_auth config[:api_key], config[:password]
-    base_uri "http://#{config[:store]}"
+  def self.shopify(env)
+    basic_auth config[:"#{env}"][:api_key], config[:"#{env}"][:password]
+    base_uri "http://#{config[:"#{env}"][:store]}"
     ShopifyTheme
   end
 end
