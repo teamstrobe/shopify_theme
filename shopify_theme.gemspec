@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Chris Hale", "John Duff"]
   s.email       = ["design@chrishale.co.uk", "john.duff@shopify.com"]
   s.homepage    = "https://github.com/chrishale/shopify_theme"
-  s.summary     = %q{Command line tool for deploying Shopify themes to multiple enviroments}
-  s.description = %q{Command line tool to help with developing Shopify themes. Provides simple commands to download, upload and delete files from a theme. Also includes the watch command to watch a directory and upload files as they change.}
+  s.summary     = %q{Command line tool for deploying Shopify themes to multiple enviroments. Forked from github.com/shopify/shopify_theme}
+  s.description = %q{Command line tool to help with developing Shopify themes. Provides simple commands to download, upload and delete files from a theme. Also includes the watch command to watch a directory and upload files as they change. github.com/shopify/shopify_theme with the ability to deploy to multitple shops.}
 
   # s.rubyforge_project = "shopify_theme"
   s.add_dependency("thor", [">= 0.14.4"])
