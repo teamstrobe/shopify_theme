@@ -1,4 +1,4 @@
-require 'httparty'
+require 'httparty-0.9.0'
 module ShopifyTheme
   include HTTParty
 
