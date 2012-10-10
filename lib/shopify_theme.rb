@@ -1,4 +1,3 @@
-gem 'httparty', '0.9.0'
 require 'httparty'
 module ShopifyTheme
   include HTTParty
