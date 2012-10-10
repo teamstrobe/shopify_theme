@@ -3,11 +3,11 @@ $:.push File.expand_path("../lib", __FILE__)
 require "shopify_theme/version"
 
 Gem::Specification.new do |s|
-  s.name        = "shopify_theme"
+  s.name        = "shopify_theme_multi_env"
   s.version     = ShopifyTheme::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Chris Hale"]
-  s.email       = ["design@chrishale.co.uk"]
+  s.authors     = ["Chris Hale", "John Duff"]
+  s.email       = ["design@chrishale.co.uk", "john.duff@shopify.com"]
   s.homepage    = "https://github.com/chrishale/shopify_theme"
   s.summary     = %q{Command line tool for deploying Shopify themes to multiple enviroments}
   s.description = %q{Command line tool to help with developing Shopify themes. Provides simple commands to download, upload and delete files from a theme. Also includes the watch command to watch a directory and upload files as they change.}
