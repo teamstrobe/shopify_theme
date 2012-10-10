@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "shopify_theme/version"
 
 Gem::Specification.new do |s|
-  s.name        = "shopify_theme_multi_env"
+  s.name        = "shopify_theme"
   s.version     = ShopifyTheme::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["John Duff", "Chris Hale"]
