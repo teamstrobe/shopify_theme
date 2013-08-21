@@ -32,7 +32,7 @@ module ShopifyTheme
   end
 
   def self.path(env)
-    @path ||= config[:"#{env}"][:theme_id] ? "/admin/themes/#{config[:"#{env}"][:theme_id]}/assets.json" : "/admin/assets.json" 
+    @path ||= config[:"#{env}"][:theme_id] ? "/admin/themes/#{config[:"#{env}"][:theme_id]}/assets.json" : "/admin/assets.json"
   end
 
   def self.ignore_files(env)
@@ -51,7 +51,7 @@ module ShopifyTheme
   private
   def self.shopify(env)
     basic_auth config[:"#{env}"][:api_key], config[:"#{env}"][:password]
-    base_uri "http://#{config[:"#{env}"][:store]}"
+    base_uri "https://#{config[:"#{env}"][:store]}"
     ShopifyTheme
   end
 end
