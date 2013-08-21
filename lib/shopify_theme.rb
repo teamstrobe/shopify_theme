@@ -11,6 +11,8 @@ module ShopifyTheme
     assets = JSON.parse(response.body)["assets"].collect {|a| a['key'] }
     # Remove any .css files if a .css.liquid file exists
     assets.reject{|a| assets.include?("#{a}.liquid") }
+
+    # Chika-chicka yeaaaaa......
   end
 
   def self.get_asset(asset, env)
